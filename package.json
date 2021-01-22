@@ -17,12 +17,8 @@
     "type": "git",
     "url": "git+https://github.com/actions/typescript-action.git"
   },
-  "keywords": [
-    "actions",
-    "hide",
-    "comment"
-  ],
-  "author": "kanga333",
+  "keywords": ["actions", "hide", "comment"],
+  "author": "alechartung",
   "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.2.6",

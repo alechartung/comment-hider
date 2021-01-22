@@ -1,6 +1,6 @@
 # Github Action to hide Bot comments
 
-![build-test](https://github.com/kanga333/comment-hider/workflows/build-test/badge.svg)
+![build-test](https://github.com/alechartung/comment-hider/workflows/build-test/badge.svg)
 
 Comment-hider action automatically hides comments posted to PR matching text.
 
@@ -14,7 +14,7 @@ on:
 steps:
   - uses: actions/checkout@v2
 
-  - uses: kanga333/comment-hider@master
+  - uses: alechartung/comment-hider@master
     name: Hide bot comments
     with:
       comment_text: /deploy
