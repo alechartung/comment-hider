@@ -8,10 +8,9 @@ inputs:
   github_token:
     description: 'The GitHub token used to create an authenticated client'
     required: true
-  hide_user_name:
-    description: 'Github username to hide comments'
-    default: 'github-actions[bot]'
-    required: false
+  comment_text:
+    description: 'Comment text to delete'
+    required: true
   hide_reason:
     description: 'Reasons to hide comments'
     default: 'OUTDATED'

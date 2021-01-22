@@ -566,10 +566,10 @@ function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const token = core.getInput('github_token');
-            const userName = core.getInput('hide_user_name');
+            const commentText = core.getInput('comment_text');
             const reason = core.getInput('hide_reason');
             const cli = new client_1.Client(token);
-            const ids = yield cli.SelectComments(userName);
+            const ids = yield cli.SelectComments(commentText);
             for (const id of ids) {
                 yield cli.HideComment(id, reason);
             }
@@ -4425,7 +4425,7 @@ class Client {
         this.issueNumber =
             issueNumber !== undefined ? issueNumber : github.context.issue.number;
     }
-    SelectComments(userName) {
+    SelectComments(commentText) {
         return __awaiter(this, void 0, void 0, function* () {
             const resp = yield this.octokit.issues.listComments({
                 owner: this.owner,
@@ -4434,7 +4434,7 @@ class Client {
             });
             const ids = [];
             for (const r of resp.data) {
-                if (r.user.login !== userName) {
+                if (r.body !== commentText) {
                     continue;
                 }
                 ids.push(r.node_id);

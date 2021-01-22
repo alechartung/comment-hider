@@ -1,16 +1,18 @@
 [
-    {
-        "id": 1,
-        "node_id": "not hide me",
-        "user": {
-            "login": "user"
-        }
-    },
-    {
-        "id": 2,
-        "node_id": "hide me",
-        "user": {
-            "login": "bot"
-        }
+  {
+    "id": 1,
+    "body": "not hide me",
+    "node_id": "not hide me",
+    "user": {
+      "login": "user"
     }
+  },
+  {
+    "id": 2,
+    "node_id": "hide me",
+    "body": "hide me",
+    "user": {
+      "login": "bot"
+    }
+  }
 ]
