@@ -45,7 +45,7 @@ export class Client {
 
     const ids: string[] = []
     for (const r of resp.data) {
-      if (r.body !== commentText) {
+      if (!r.body.startsWith(commentText)) {
         continue
       }
       ids.push(r.node_id)
