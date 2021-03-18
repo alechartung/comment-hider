@@ -45,7 +45,11 @@ export class Client {
 
     const ids: string[] = []
     for (const r of resp.data) {
+      // eslint-disable-next-line no-console
+      console.log(r.body)
       if (!r.body.startsWith(commentText)) {
+        // eslint-disable-next-line no-console
+        console.log(`comment hidden: ${r.body}`)
         continue
       }
       ids.push(r.node_id)
