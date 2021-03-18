@@ -4427,21 +4427,32 @@ class Client {
     }
     SelectComments(commentText) {
         return __awaiter(this, void 0, void 0, function* () {
-            const resp = yield this.octokit.issues.listComments({
+            let currentPage = 1;
+            let resp = yield this.octokit.issues.listComments({
                 owner: this.owner,
                 repo: this.repo,
-                issue_number: this.issueNumber
+                issue_number: this.issueNumber,
+                page: currentPage
             });
             const ids = [];
-            for (const r of resp.data) {
-                // eslint-disable-next-line no-console
-                console.log(r.body);
-                if (!r.body.startsWith(commentText)) {
+            while (resp.data.length > 0) {
+                for (const r of resp.data) {
                     // eslint-disable-next-line no-console
-                    console.log(`comment hidden: ${r.body}`);
-                    continue;
+                    console.log(r.body);
+                    if (!r.body.startsWith(commentText)) {
+                        // eslint-disable-next-line no-console
+                        console.log(`comment hidden: ${r.body}`);
+                        continue;
+                    }
+                    ids.push(r.node_id);
                 }
-                ids.push(r.node_id);
+                currentPage = currentPage + 1;
+                resp = yield this.octokit.issues.listComments({
+                    owner: this.owner,
+                    repo: this.repo,
+                    issue_number: this.issueNumber,
+                    page: currentPage
+                });
             }
             return new Promise(resolve => resolve(ids));
         });

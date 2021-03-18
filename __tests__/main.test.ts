@@ -12,8 +12,12 @@ describe('Hide Comments', () => {
   it('should only select the hide me comment', async () => {
     const client = new Client('secrets', 'owner', 'repo', 1)
     const github = nock('https://api.github.com')
-      .get(`/repos/owner/repo/issues/1/comments`)
+      .get(`/repos/owner/repo/issues/1/comments?page=1`)
       .reply(200, listComment)
+
+    const github2 = nock('https://api.github.com')
+      .get(`/repos/owner/repo/issues/1/comments?page=2`)
+      .reply(200, [])
 
     const response = await client.SelectComments('hide me')
 
